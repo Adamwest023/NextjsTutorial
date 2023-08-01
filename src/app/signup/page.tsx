@@ -9,7 +9,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function SignupPage() {
     const router = useRouter();
-
     const [user, setUser] = React.useState({
         email: "",
         password: "",
@@ -46,6 +45,7 @@ export default function SignupPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            
             <h1>{loading ? "Processing" : "Sign Up"}</h1>
             <hr />
             <label htmlFor="username">username</label>
