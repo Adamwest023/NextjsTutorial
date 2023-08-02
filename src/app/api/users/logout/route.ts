@@ -1,8 +1,4 @@
-import { connect } from "@/dbConfig/dbConfig"
-import User from "@/models/userModel.js";
 import { NextResponse } from "next/server";
-import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
 
 export async function GET() {
     try {
