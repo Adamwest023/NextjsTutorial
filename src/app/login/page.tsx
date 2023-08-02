@@ -12,7 +12,8 @@ export default function LoginPage() {
         email: "",
         password: "",
     });
-    
+    const [error, setError] = React.useState(false)
+
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
 
@@ -25,12 +26,17 @@ export default function LoginPage() {
             router.push("/profile");
 
         } catch (error: any) {
+            setError(true);
             console.log("Login failed", error.message);
             toast.error(error.message);
         } finally {
             setLoading(false);
         }
     }
+
+    const onForgotPassword = async () => {
+        router.push("/forgotpassword");
+        }
     useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
             setButtonDisabled(false);
@@ -41,7 +47,7 @@ export default function LoginPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading? "Processing":"Login" }</h1>
+            <h1>{loading ? "Processing" : "Login"}</h1>
             <hr />
             <label htmlFor="email">email</label>
             <input
@@ -63,7 +69,14 @@ export default function LoginPage() {
             />
             <button
                 onClick={onLogin}
-                className="p-2 border border-gray-200 rounded-lg  mb-4 focus:outline-none focus:border-gray-600 text-black">{buttonDisabled ? "Login Here" : "Login"}</button>
+                className="p-2 border border-gray-200 rounded-lg  mb-4 focus:outline-none focus:border-gray-600 text-black">{buttonDisabled ? "Login Here" : "Login"}
+            </button>
+            {error && (
+                <><h3>Need Help?</h3><button
+                    onClick={onForgotPassword}
+                    className="p-2 border border-gray-200 rounded-lg  mb-4 focus:outline-none focus:border-gray-600 text-black">Forgot password
+                </button></>)
+            }
             <Link href="/signup">Visit Signup Page</Link>
         </div>
     )
