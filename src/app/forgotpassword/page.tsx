@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { sendEmail } from "@/helpers/mailer";
 
 export default function ForgotPassword() {
     const router = useRouter();
@@ -19,10 +20,15 @@ export default function ForgotPassword() {
     const onReset = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('/')
-
+            const response = await axios.post('/api/users/forgotpassword', user)
+            console.log("reset successful", response.data);
+            toast.success("Check your email");
+            // router.push("/login");
         } catch (error: any) {
-
+            console.log("email not valid!!", error.message);
+            toast.success("Email not valid");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -33,13 +39,14 @@ export default function ForgotPassword() {
         } else {
             setButtonDisabled(false);
         }
-    }, [user])
+    }, [user]);
 
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? "Processing" : "Change Password"}</h1>
-            <label htmlFor="email">email</label>
+            <h1>{loading ? "Processing" : "Forgot Password"}</h1>
+            <hr />
+            {/* <label htmlFor="email">email</label> */}
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
                 id="email"
@@ -54,6 +61,7 @@ export default function ForgotPassword() {
                     className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Submit
                 </button>
             )}
+            <Link href="/signup">Visit Signup page</Link>
         </div>
     )
 }
