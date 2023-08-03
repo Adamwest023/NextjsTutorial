@@ -3,7 +3,7 @@ import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 
 
-export const sendEmail = async ({ email, emailType, userId}: any) => {
+export const sendEmail = async ({ email, emailType, userId }: any) => {
     try {
         // create a hashed token
         const hashedToken = await bcryptjs.hash(userId.toString(), 10);
@@ -15,10 +15,10 @@ export const sendEmail = async ({ email, emailType, userId}: any) => {
                 verifyTokenExpiry: Date.now() + 3600000
             });
         } else if (emailType === "RESET") {
-            // await User.findByIdAndUpdate(userId, {
-            //     forgotPasswordToken: hashedToken,
-            //     forgotPasswordTokenExpiry: Date.now() + 3600000
-            // });
+            await User.findByIdAndUpdate(userId, {
+                forgotPasswordToken: hashedToken,
+                forgotPasswordTokenExpiry: Date.now() + 3600000
+            });
         }
 
         var transport = nodemailer.createTransport({
@@ -34,11 +34,11 @@ export const sendEmail = async ({ email, emailType, userId}: any) => {
             from: 'adamwest023@gmail.com',
             to: email,
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
-            html: emailType=== "VERIFY"?`<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify your email" : "Reset your password"}
+            html: emailType === "VERIFY" ? `<p>Click <a href="${process.env.DOMAIN}/${emailType === "VERIFY" ? "verifyemail" : 'updatepassword'}?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify your email" : "Reset your password"}
             or copy and paste the link below in your browser. 
-            <br>${process.env.DOMAIN}/verifyemail?token=${hashedToken} </p>`:`<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify your email" : "Reset your password"}
+            <br>${process.env.DOMAIN}/${emailType === "VERIFY" ? "verifyemail" : 'updatepassword'}?token=${hashedToken} </p>` : `<p>Click <a href="${process.env.DOMAIN}/updatepassword?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "Verify your email" : "Reset your password"}
             or copy and paste the link below in your browser. 
-            <br>${process.env.DOMAIN}/verifyemail?token=${hashedToken} </p>`
+            <br>${process.env.DOMAIN}/${emailType === "VERIFY" ? "verifyemail" : 'updatepassword'}?token=${hashedToken} </p>`
         }
 
         const mailResponse = await transport.sendMail
