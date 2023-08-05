@@ -4,38 +4,34 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { set } from "mongoose";
+
 
 
 export default function UpdatePasswordPage() {
     const [token, setToken] = useState("");
     const [user, setUser] = useState({
+        email: "",
         password: " ",
         token: " "
-    })
+    });
+
     // const [password, setPassword] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = React.useState(false);
 
-
-
-
     //update password
     const onUpdatePassword = async () => {
-        user.token= token
-        
-        
+        user.token = token
+
         try {
             setLoading(true);
-            console.log(user.password);
-            console.log(user.token); 
-            const response = await axios.post('/api/users/updatepassword',  user );
+            const response = await axios.post('/api/users/updatepassword', user);
             console.log(response.data);
 
         } catch (error: any) {
             setError(true);
             console.log(error.response.data);
-            
+
         } finally {
             setLoading(false);
         }
@@ -56,7 +52,16 @@ export default function UpdatePasswordPage() {
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-4xl">{loading ? "Processing" : "Update password"}</h1>
             <hr />
-            <label htmlFor="password">{token ? `${token}` : "no token"}</label>
+            <label htmlFor="email">email</label>
+            <input
+                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                id="email"
+                type="text"
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                placeholder="email"
+            />
+            <label htmlFor="password">{token ? `Enter a new password` : "no token"}</label>
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
                 id="password"
