@@ -20,10 +20,11 @@ export default function ForgotPassword() {
     const onReset = async () => {
         try {
             setLoading(true);
-            const response = await axios.post('/api/users/forgotpassword', user)
+            const response = await axios.post('/api/users/forgotpassword', user);
+
             console.log("reset successful", response.data);
             toast.success("Check your email");
-            // router.push("/login");
+            router.push("/checkemail");
         } catch (error: any) {
             console.log("email not valid!!", error.message);
             toast.success("Email not valid");
