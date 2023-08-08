@@ -2,14 +2,13 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-
-
 export default function UpdatePasswordPage() {
+    const router = useRouter();
     const [token, setToken] = useState("");
-    const [user, setUser] = useState({
+    const [user, setUser] = React.useState({
         email: "",
         password: " ",
         token: " "
@@ -22,11 +21,11 @@ export default function UpdatePasswordPage() {
     //update password
     const onUpdatePassword = async () => {
         user.token = token
-
         try {
             setLoading(true);
             const response = await axios.post('/api/users/updatepassword', user);
             console.log(response.data);
+            router.push("/login")
 
         } catch (error: any) {
             setError(true);
