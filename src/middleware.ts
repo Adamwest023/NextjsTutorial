@@ -26,5 +26,6 @@ export const config = {
         '/verifyemail',
         '/forgotpassword',
         '/updatepassword'
+        
     ]
 };

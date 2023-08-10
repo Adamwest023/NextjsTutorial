@@ -25,7 +25,7 @@ export default function VerifyEmailPage() {
     useEffect(() => {
         const urlToken = window.location.search.split("=")[1];
         setToken(urlToken || "");
-    }, []);
+    }, [setToken]);
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function VerifyEmailPage() {
             {verified && (
                 <div>
                     <h2 className="text-2xl">Email Verified</h2>
-                    <Link href="/login">
+                    <Link  className="linkBox"href="/login">
                         Login
                     </Link>
                 </div>

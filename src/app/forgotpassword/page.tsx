@@ -49,7 +49,7 @@ export default function ForgotPassword() {
             <hr />
             {/* <label htmlFor="email">email</label> */}
             <input
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                className="input"
                 id="email"
                 type="text"
                 value={user.email}
@@ -59,10 +59,10 @@ export default function ForgotPassword() {
             {buttonDisabled && (
                 <button
                     onClick={onReset}
-                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Submit
+                    className="button">Submit
                 </button>
             )}
-            <Link href="/signup">Visit Signup page</Link>
+            <Link className="linkBox" href="/signup">Visit Signup page</Link>
         </div>
     )
 }

@@ -18,10 +18,68 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.button {
+  background-color: rgb(109 40 217);
+}
+
+.button,
+.button2 {
+  color: rgb(255 255 255);
+  padding: .6rem;
+  border-color: rgb(209 213 219);
+  background-color: rgb(109 40 217);
+  border-radius: 0.5rem;
+  border-width: 1px;
+  margin-bottom: 1rem;
+}
+
+.button:hover {
+  background-color: rgb(124 58 237);
+}
+
+.button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color=rgb(196 181 253));
+}
+
+.button:active {
+  background-color: rgb(109 40 217);
+}
+
+.button2 {
+  background-color: rgb(63, 80, 228);
+}
+.button2:hover {
+  background-color: rgb(80, 107, 227);
+}
+
+.input {
+  padding: .6rem;
+  color: black;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  margin-bottom: 1rem;
+
+}
+
+.input:focus {
+  outline: 2px solid transparent;
+  border-color: rgb(75 85 99);
+}
+
+.input::placeholder {
+  font-style: italic;
+}
+
+.linkBox {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  padding: .6rem;
+  color: black;
 }

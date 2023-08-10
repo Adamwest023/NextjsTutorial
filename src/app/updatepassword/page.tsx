@@ -39,7 +39,8 @@ export default function UpdatePasswordPage() {
     useEffect(() => {
         const urlToken = window.location.search.split("=")[1];
         setToken(urlToken || "");
-    }, []);
+    }, [setToken]);
+
     //use effect to validate token
     useEffect(() => {
         if (token.length > 0) {
@@ -53,7 +54,7 @@ export default function UpdatePasswordPage() {
             <hr />
             <label htmlFor="email">email</label>
             <input
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                className="input"
                 id="email"
                 type="text"
                 value={user.email}
@@ -62,7 +63,7 @@ export default function UpdatePasswordPage() {
             />
             <label htmlFor="password">{token ? `Enter a new password` : "no token"}</label>
             <input
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+                className="input"
                 id="password"
                 type="password"
                 value={user.password}
@@ -78,7 +79,7 @@ export default function UpdatePasswordPage() {
             /> */}
             <button
                 onClick={onUpdatePassword}
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Update Password</button>
+                className="button">Update Password</button>
 
         </div>
 
