@@ -42,40 +42,60 @@ export default function SignupPage() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? "Processing" : "Signup"}</h1>
+        <div className="flex flex-row min-h-screen ">
             <hr />
-            <label className="text-align:left item" htmlFor="username">username</label>
-            <input
-                className="input"
-                id="username"
-                type="text"
-                value={user.username}
-                onChange={(e) => setUser({ ...user, username: e.target.value })}
-                placeholder="username"
-            />
-            <label className="text-align:left" htmlFor="email">email</label>
-            <input
-                className="input"
-                id="email"
-                type="text"
-                value={user.email}
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
-                placeholder="email"
-            />
-            <label className="text-align:left" htmlFor="password">password</label>
-            <input
-                className="input"
-                id="password"
-                type="password"
-                value={user.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                placeholder="password"
-            />
-            <button
-                onClick={onSignup}
-                className="button">{buttonDisabled ? "Insert information" : "Signup"}</button>
-            <Link className="linkBox"href="/login">Visit login page</Link>
+            <div className="info">
+                <div className="infoBox1">
+                    <h1 className="infoText">Be apart!</h1>
+                </div>
+
+                <div className="infoBox2"></div>
+            </div>
+            <div className="signupBox">
+                <div className=" grid grid-row-2 ">
+                    <h1>{loading ? "Processing" : "Signup"}</h1>
+                    <label className="text-align:left item" htmlFor="username">Username <span style={{ color: "red" }}>*</span></label>
+                    <input
+                        className="input"
+                        id="username"
+                        type="text"
+                        value={user.username}
+                        onChange={(e) => setUser({ ...user, username: e.target.value })}
+                        placeholder="username"
+                    />
+                </div>
+                <div className="flex grid grid-row-2 ">
+                    <label className="text-align:left" htmlFor="email">Email <span style={{ color: "red" }}>*</span></label>
+                    <input
+                        className="input"
+                        id="email"
+                        type="text"
+                        value={user.email}
+                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        placeholder="email"
+                    />
+                </div>
+                <div className="grid grid-row-2">
+                    <label className="text-align:left" htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
+                    <input
+                        className="input"
+                        id="password"
+                        type="password"
+                        value={user.password}
+                        onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        placeholder="password"
+                    />
+                </div>
+                <br />
+                <div className=" flex flex-row-2 
+                flex-wrap
+                place-content-evenly">
+                    <button
+                        onClick={onSignup}
+                        className="button">{buttonDisabled ? "Insert information" : "Signup"}</button>
+                    <Link className="linkBox" href="/login">Visit login page</Link>
+                </div>
+            </div>
         </div>
     )
 

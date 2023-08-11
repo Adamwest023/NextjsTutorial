@@ -7,7 +7,9 @@ export function middleware(request: NextRequest) {
     const isPublicPath = path === "/login" || path === "/signup" || path === '/verifyemail' || path === "/forgotpassword"|| path === "/updatepassword"
 
     const token = request.cookies.get("token")?.value || ''
-
+    if(path === "/") {
+        return NextResponse.redirect(new URL('/signup', request.nextUrl))
+    }
     if (isPublicPath && token) {
         return NextResponse.redirect(new URL('/', request.nextUrl))
     };
@@ -26,6 +28,5 @@ export const config = {
         '/verifyemail',
         '/forgotpassword',
         '/updatepassword'
-        
     ]
 };

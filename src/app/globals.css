@@ -21,6 +21,12 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .button {
@@ -32,14 +38,14 @@ body {
   color: rgb(255 255 255);
   padding: .6rem;
   border-color: rgb(209 213 219);
-  background-color: rgb(109 40 217);
+  background-color: #6D9F71;
   border-radius: 0.5rem;
   border-width: 1px;
   margin-bottom: 1rem;
 }
 
 .button:hover {
-  background-color: rgb(124 58 237);
+  background-color: #337357;
 }
 
 .button:focus {
@@ -55,6 +61,7 @@ body {
 .button2 {
   background-color: rgb(63, 80, 228);
 }
+
 .button2:hover {
   background-color: rgb(80, 107, 227);
 }
@@ -80,6 +87,98 @@ body {
 .linkBox {
   border-radius: 0.5rem;
   border-width: 1px;
+  border-color: black;
   padding: .6rem;
-  color: black;
+}
+
+/* signup page  */
+.signupBox {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+  place-content: center;
+  height: auto;
+  padding: 80px;
+  background-color: #E4E3D3;
+}
+
+.signupBox h1 {
+  opacity: 65%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50%;
+}
+
+.infoBox1 {
+  flex-basis: 50%;
+  background-image: linear-gradient(132deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+}
+
+.infoBox2 {
+
+  flex-basis: 50%;
+  background-image: linear-gradient(48deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+}
+
+.infoText {
+  color: #efeee7;
+  font-size: 70px;
+  display: flex;
+  position: relative;
+  top: 89%;
+  left: 35%;
+}
+
+/* login page styles */
+.loginDiv {
+  box-sizing:content-box;
+} 
+.loginBox,
+.sideBox {
+  display: flex;
+  flex-basis: 33%;
+  flex-direction: column;
+  height: auto;
+}
+
+.loginBox {
+  place-content: center;
+  padding: 30px;
+  background-color: #E4E3D3;
+}
+
+.loginBox h1 {
+  text-align: center;
+  opacity: 65%;
+}
+
+.sideBox {
+  background-color: red;
+}
+
+.sideBox1 {
+  background-image: linear-gradient(48deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+}
+
+.sideBox2 {
+  background-image: linear-gradient(-48deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+}
+.linkDiv{
+  display: flex;
+  flex-direction: row;
+  flex-basis: 10%;
+  place-content: space-around;
+  height: 5%;
+}
+
+.loginLink {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: black;
+  padding: .6rem;
+  height: 45px;
+  overflow: hidden;
 }
