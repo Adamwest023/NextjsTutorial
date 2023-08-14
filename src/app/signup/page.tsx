@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { error } from "console";
 
 
 export default function SignupPage() {
@@ -15,20 +16,25 @@ export default function SignupPage() {
     })
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+    const [loginError, setLoginError] = React.useState(false);
+
 
     const onSignup = async () => {
         try {
             setLoading(true);
+            setLoginError(false)
             const response = await axios.post("/api/users/signup", user);
             console.log("Signup success", response.data);
             router.push("/login");
 
         } catch (error: any) {
+            setLoginError(true);
             console.log("Signup failed", error.message);
-
+            console.log("login failed");
             toast.error(error.message);
         } finally {
             setLoading(false);
+
         }
     }
 
@@ -39,7 +45,6 @@ export default function SignupPage() {
             setButtonDisabled(true);
         }
     }, [user]);
-
 
     return (
         <div className="flex flex-row min-h-screen ">
@@ -52,7 +57,7 @@ export default function SignupPage() {
                 <div className="infoBox2"></div>
             </div>
             <div className="signupBox">
-                <div className=" grid grid-row-2 ">
+                <form className=" grid grid-row-2 ">
                     <h1>{loading ? "Processing" : "Signup"}</h1>
                     <label className="text-align:left item" htmlFor="username">Username <span style={{ color: "red" }}>*</span></label>
                     <input
@@ -63,7 +68,7 @@ export default function SignupPage() {
                         onChange={(e) => setUser({ ...user, username: e.target.value })}
                         placeholder="username"
                     />
-                </div>
+                </form>
                 <div className="flex grid grid-row-2 ">
                     <label className="text-align:left" htmlFor="email">Email <span style={{ color: "red" }}>*</span></label>
                     <input
@@ -75,25 +80,28 @@ export default function SignupPage() {
                         placeholder="email"
                     />
                 </div>
-                <div className="grid grid-row-2">
+                <form className="grid grid-row-2">
                     <label className="text-align:left" htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
                     <input
                         className="input"
                         id="password"
-                        type="password"
+                        type="text"
                         value={user.password}
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
                         placeholder="password"
                     />
-                </div>
+                </form>
+                <h3>{loginError ? "Username is already found please login" : " "}</h3>
                 <br />
                 <div className=" flex flex-row-2 
                 flex-wrap
                 place-content-evenly">
-                    <button
+                    {buttonDisabled ? <button className = "button button-disabled">Signup</button> : <button
                         onClick={onSignup}
-                        className="button">{buttonDisabled ? "Insert information" : "Signup"}</button>
-                    <Link className="linkBox" href="/login">Visit login page</Link>
+                        className="button">Signup
+                    </button>}
+                    <span className="buttonBorder"></span>
+                    <button className="button"> <Link href="/login">Visit login page</Link></button>
                 </div>
             </div>
         </div>

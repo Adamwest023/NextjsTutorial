@@ -65,6 +65,9 @@ h1 {
 .button2:hover {
   background-color: rgb(80, 107, 227);
 }
+.button-disabled{
+  opacity: 50%;
+}
 
 .input {
   padding: .6rem;
@@ -89,6 +92,7 @@ h1 {
   border-width: 1px;
   border-color: black;
   padding: .6rem;
+  height: 50px;
 }
 
 /* signup page  */
@@ -130,7 +134,15 @@ h1 {
   position: relative;
   top: 89%;
   left: 35%;
+  width: 350px;
+
 }
+.buttonBorder {
+  border-right: 1px solid black;
+  border-radius: 25%;
+  border-bottom-left-radius: 25%;
+  }
+ 
 
 /* login page styles */
 .loginDiv {
