@@ -49,8 +49,6 @@ export default function LoginPage() {
 
 
     return (
-
-
         <div className="flex loginDiv flew-row content-center min-h-screen">
             <div className="sideBox sideBox1"></div>
             <div className="loginBox"><h1 className="py-4">{loading ? "Processing" : "Login"}</h1>
@@ -75,13 +73,10 @@ export default function LoginPage() {
                 />
                 <button
                     onClick={onLogin}
-                    className="button2">{buttonDisabled ? "Login Here" : "Login"}
+                    className="button">{buttonDisabled ? "Login Here" : "Login"}
                 </button>
                 {error && (
-                    <><h3>Need Help?</h3><button
-                        onClick={onForgotPassword}
-                        className="button2  ">Forgot password
-                    </button></>)
+                    <><h3 className="text-center pb-2.5">Email or Password does not exist</h3></>)
                 }
                 <div className="linkDiv">
                     <button className="loginLink"><Link  href="/signup">Signup Page</Link></button>

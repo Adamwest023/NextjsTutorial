@@ -25,7 +25,7 @@ export default function SignupPage() {
             setLoginError(false)
             const response = await axios.post("/api/users/signup", user);
             console.log("Signup success", response.data);
-            router.push("/login");
+            router.push("/signupverify");
 
         } catch (error: any) {
             setLoginError(true);
