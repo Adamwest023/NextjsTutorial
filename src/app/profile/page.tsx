@@ -10,7 +10,10 @@ import { get } from "http";
 export default function ProfilePage() {
 
     const router = useRouter();
-    const [data, setData] = useState("nothing");
+    const [data, setData] = useState("loading");
+    const [loading, setLoading] = React.useState(false);
+    const [user, setUser] = useState("nothing");
+
 
     const logout = async () => {
         try {
@@ -22,21 +25,19 @@ export default function ProfilePage() {
             toast.error(error.message);
         }
     }
-
+    
     const getUserDetails = async () => {
         const res = await axios.get("/api/users/me")
         console.log(res.data);
         setData(res.data.data._id);
-        console.log(res.data.data.username);
+        setUser(res.data.data);
+        
     }
 
     useEffect(() => {
         window.addEventListener = getUserDetails;
     }, []);
     
-    
-
-
     return (
         <div className=" flex flex-row flex-wrap "  >
             <div className=" logout">
@@ -63,7 +64,7 @@ export default function ProfilePage() {
                 </div>
                 <div className=" profileBox2">
                     <div className="detailBox2">
-                        <div className="infoTab "><h2>Name</h2><p>profession</p></div>
+                        <div className="infoTab "><h2>{user.username}</h2><p>profession</p></div>
                         <div className="infoTab"><h3>area</h3></div>
                         <div>
                             <button
@@ -71,7 +72,7 @@ export default function ProfilePage() {
                                 className="button">Verified User</button>
                         </div>
                     </div>
-                    <div className="contactBox"><h2 className="p-3 rounded bg-green-500">{data === "About" ? "About" : <Link
+                    <div className="contactBox"><h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
                         href={`/profile/${data}`}>{data}
                     </Link>}
                     </h2>
