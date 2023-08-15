@@ -96,6 +96,12 @@ h1 {
   height: 50px;
 }
 
+.flexDis {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
 /* signup page  */
 .signupBox {
   display: flex;
@@ -266,7 +272,29 @@ span:before {
 }
 
 .contactBox li {
-padding-bottom: 10px;}
+  padding-bottom: 10px;
+}
+
 .contactBox span {
   font-weight: bolder;
+}
+
+/* update user page */
+.userInfoDiv {
+  justify-content: center;
+  padding: 5rem 0 5rem 0;
+  background-image: linear-gradient(50deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+  flex-direction: column !important;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  width: 83.333333%;
+  height: 85vh;
+  background-color: rgb(228, 227, 211);
+  justify-content: center;
+  border-radius: 5px;
+  padding: 1.5rem 5rem;
 }

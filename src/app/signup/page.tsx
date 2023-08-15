@@ -47,7 +47,7 @@ export default function SignupPage() {
     }, [user]);
 
     return (
-        <div className="flex flex-row min-h-screen ">
+        <div className="flexDis">
             <hr />
             <div className="info">
                 <div className="infoBox1">

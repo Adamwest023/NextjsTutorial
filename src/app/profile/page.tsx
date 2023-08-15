@@ -8,13 +8,17 @@ import { get } from "http";
 
 
 export default function ProfilePage() {
-
     const router = useRouter();
     const [data, setData] = useState("loading");
+    const [email, setEmail] = useState("loading");
     const [loading, setLoading] = React.useState(false);
-    const [user, setUser] = useState("nothing");
+    const [user, setUser] = React.useState("nothing");
+    const [updateUser, setUpdateUser] = React.useState({
+        _id: "",
+        email: "",
+    });
 
-
+    //logut function
     const logout = async () => {
         try {
             await axios.get('/api/users/logout');
@@ -25,25 +29,54 @@ export default function ProfilePage() {
             toast.error(error.message);
         }
     }
-    
+
+    //instantly gets user data
     const getUserDetails = async () => {
         const res = await axios.get("/api/users/me")
         console.log(res.data);
         setData(res.data.data._id);
+        setEmail(res.data.data.email);
         setUser(res.data.data);
-        
+        return res.data 
+    };
+
+    //sends user to update information
+    const onUserInfo = async () => {
+        updateUser._id = data
+        updateUser.email =email 
+        console.log(data);
+        console.log(email);
+        try {
+            setLoading(true);
+            const response = await axios.post("/api/users/userinfo", updateUser);
+            console.log("success", response.data);
+            router.push("/updateuserinfo");
+        } catch (error: any) {
+            console.log("error", error.message);
+            console.log(data);
+        } finally {
+            setLoading(false);
+        }
     }
 
+
+
+    //calls user data function on page load 
     useEffect(() => {
-        window.addEventListener = getUserDetails();
+        window.addEventListener("load", getUserDetails());
     }, []);
-    
+
     return (
-        <div className=" flex flex-row flex-wrap "  >
+        <div className=" flexDis flex-wrap"  >
             <div className=" logout">
                 <button
+                    className="button"
+                    onClick={onUserInfo}>
+                    Add User info
+                </button>
+                <button
                     onClick={logout}
-                    className=" button mr-6 py-2 ">Logout</button>
+                    className=" button pl-3 mr-6 py-2 ">Logout</button>
             </div>
             <div className=" flex flex-row basis-full bg-slate-200 h-screen">
                 <div className=" profileBox1 ">
@@ -67,9 +100,7 @@ export default function ProfilePage() {
                         <div className="infoTab "><h2>{user.username}</h2><p>profession</p></div>
                         <div className="infoTab"><h3>area</h3></div>
                         <div>
-                            <button
 
-                                className="button">Verified User</button>
                         </div>
                     </div>
                     <div className="contactBox"><h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
