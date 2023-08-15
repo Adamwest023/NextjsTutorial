@@ -65,7 +65,8 @@ h1 {
 .button2:hover {
   background-color: rgb(80, 107, 227);
 }
-.button-disabled{
+
+.button-disabled {
   opacity: 50%;
 }
 
@@ -137,17 +138,19 @@ h1 {
   width: 350px;
 
 }
+
 .buttonBorder {
   border-right: 1px solid black;
   border-radius: 25%;
   border-bottom-left-radius: 25%;
-  }
- 
+}
+
 
 /* login page styles */
 .loginDiv {
-  box-sizing:content-box;
-} 
+  box-sizing: content-box;
+}
+
 .loginBox,
 .sideBox {
   display: flex;
@@ -178,7 +181,8 @@ h1 {
 .sideBox2 {
   background-image: linear-gradient(-48deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
 }
-.linkDiv{
+
+.linkDiv {
   display: flex;
   flex-direction: row;
   flex-basis: 10%;
@@ -193,4 +197,76 @@ h1 {
   padding: .6rem;
   height: 45px;
   overflow: hidden;
+}
+
+/* profile page */
+.logout {
+  display: flex;
+  flex-basis: 100%;
+  background-color: #2E2D4D;
+  justify-content: flex-end;
+  height: 55px;
+}
+
+.profileBox1,
+.profileBox2 {
+  display: flex;
+  flex: wrap;
+  flex-direction: column;
+  padding: 0.75rem;
+
+}
+
+.profileBox1 {
+  background-image: linear-gradient(50deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
+  flex-basis: 33.333333%;
+}
+
+.profileBox2 {
+  flex-basis: 66.666667%;
+  background-color: #E4E3D3;
+}
+
+.detailBox {
+  flex-basis: 33.333333%;
+  padding-left: 5px;
+}
+
+.detailBox>span:after,
+span:before {
+  content: "\00a0\00a0\00a0\00a0\00a0";
+  text-decoration: line-through;
+  color: rgb(148 163 184);
+  ;
+}
+
+.detailBox2 {
+  display: flex;
+  flex-basis: 33.333333%;
+  padding-left: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.detailBox2>div:first-child {
+  flex-basis: 40%;
+}
+
+.detailBox2>div:nth-child(2) {
+  flex-basis: 60%;
+}
+
+.detailBox2>div:nth-child(3) {
+  flex-basis: 100%;
+}
+
+.contactBox {
+  flex-basis: 66.666667%;
+  padding-left: 5px;
+}
+
+.contactBox li {
+padding-bottom: 10px;}
+.contactBox span {
+  font-weight: bolder;
 }

@@ -80,7 +80,7 @@ export default function LoginPage() {
                 }
                 <div className="linkDiv">
                     <button className="loginLink"><Link  href="/signup">Signup Page</Link></button>
-                    <button className="loginLink"><Link  href="/forgotpassword">Forgot Password?</Link></button>
+                    <button onClick={onForgotPassword}className="loginLink"><Link  href="/forgotpassword">Forgot Password?</Link></button>
                 </div>
             </div>
             <div className="sideBox sideBox2"></div>

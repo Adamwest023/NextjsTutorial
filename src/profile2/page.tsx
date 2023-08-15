@@ -1,16 +1,24 @@
 "use client"
 import axios from "axios"
 import Link from "next/link"
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import { get } from "http";
 
 
-export default function ProfilePage() {
-
+export async function ProfilePage() {
     const router = useRouter();
     const [data, setData] = useState("nothing");
+    const [user,setUser] = useState("")
+
+    const getUserDataStat = async () => {
+        const res = await axios.get("/api/users/me")
+        console.log(res.data);
+        setData(res.data.data._id);
+        setUser(res.data)
+
+    }
+
 
     const logout = async () => {
         try {
@@ -27,22 +35,16 @@ export default function ProfilePage() {
         const res = await axios.get("/api/users/me")
         console.log(res.data);
         setData(res.data.data._id);
-        console.log(res.data.data.username);
     }
 
-    useEffect(() => {
-        window.addEventListener = getUserDetails;
-    }, []);
-    
-    
 
 
     return (
-        <div className=" flex flex-row flex-wrap "  >
+        <div className=" flex flex-row flex-wrap ">
             <div className=" logout">
                 <button
                     onClick={logout}
-                    className=" button mr-6 py-2 ">Logout</button>
+                    className=" button mr-6 py-2">Logout</button>
             </div>
             <div className=" flex flex-row basis-full bg-slate-200 h-screen">
                 <div className=" profileBox1 ">
@@ -55,7 +57,7 @@ export default function ProfilePage() {
                         <span>Skills</span></h2>
                         <br />
                         <ul>
-                            <li></li>
+                            <li>one</li>
                             <li>two</li>
                             <li>three</li>
                             <li>four</li>
@@ -67,7 +69,7 @@ export default function ProfilePage() {
                         <div className="infoTab"><h3>area</h3></div>
                         <div>
                             <button
-
+                                onClick={getUserDetails}
                                 className="button">Verified User</button>
                         </div>
                     </div>
