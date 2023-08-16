@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast"
 
 
-export default function addUserInfo() {
+export default function AddUserInfo() {
         const router = useRouter();
         const [error, setError] = useState(false);
         const [loading, setLoading] = React.useState(false);
