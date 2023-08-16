@@ -79,8 +79,14 @@ export default function LoginPage() {
                     <><h3 className="text-center pb-2.5">Email or Password does not exist</h3></>)
                 }
                 <div className="linkDiv">
-                    <button className="loginLink"><Link  href="/signup">Signup Page</Link></button>
-                    <button onClick={onForgotPassword}className="loginLink"><Link  href="/forgotpassword">Forgot Password?</Link></button>
+                    <button className="loginLink">
+                        <Link href="/signup">Signup Page</Link>
+                    </button>
+                    <span className="buttonBorder"></span>
+                    <button onClick={onForgotPassword} className="loginLink ">
+                        <Link href="/forgotpassword">Forgot Password?
+                        </Link>
+                    </button>
                 </div>
             </div>
             <div className="sideBox sideBox2"></div>

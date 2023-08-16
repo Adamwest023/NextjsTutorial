@@ -18,12 +18,16 @@ export default function AddUserInfo() {
                 birthday: "",
                 about: "",
                 profession:"",
+                skills: "",
         });
 
         //updating the user's new information
         const onUpdateUser = async () => {
                 console.log("success");
                 console.log(user);
+                user.skills.split("\\s+");
+                console.log(user.skills);
+                
                 try {
                         setLoading(true);
                         const response = await axios.post('/api/users/updateuserinfo', user);
@@ -91,6 +95,22 @@ export default function AddUserInfo() {
                                                                                 value={user.profession}
                                                                                 onChange={(e) => setUser({ ...user, profession: e.target.value })}
                                                                                 placeholder="Job Title"
+                                                                        />
+
+                                                                </div>
+
+                                                        </div>
+                                                </div>
+                                                <div className=" flex flex-col">
+                                                        <label htmlFor="skills">Skills</label>
+                                                        <div>
+                                                                <div>
+                                                                        <input className="input"
+                                                                                id="skills"
+                                                                                type="text"
+                                                                                value={user.skills}
+                                                                                onChange={(e) => setUser({ ...user, skills: e.target.value })}
+                                                                                placeholder="Skills you want to promote"
                                                                         />
 
                                                                 </div>

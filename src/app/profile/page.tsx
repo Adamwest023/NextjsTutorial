@@ -19,6 +19,7 @@ export default function ProfilePage() {
         phoneNumber: "",
         address: "",
         email: "",
+        skills: []
     });
     const [updateUser, setUpdateUser] = React.useState({
         _id: "",
@@ -79,7 +80,7 @@ export default function ProfilePage() {
     })
 
     return (
-        <div className=" flexDis flex-wrap"  >
+        <div className=" flexDis flex-wrap profileBg "  >
             <div className=" logout">
                 <button
                     className="button"
@@ -90,47 +91,49 @@ export default function ProfilePage() {
                     onClick={logout}
                     className=" button pl-3 mr-6 py-2 ">Logout</button>
             </div>
-            <div className=" flex flex-row basis-full bg-slate-200 h-screen">
-                <div className=" profileBox1 ">
-                    <div className="basis-1/3 pl-6 rounded border-slate-400 border-solid border-2">This is for profile picture</div>
-                    <div className="detailBox ">
-                        <h2><span>Details</span></h2>
-                        <p>{loading ? "loading" : user.about}</p>
-                    </div>
-                    <div className="detailBox"><h2>
-                        <span>Skills</span></h2>
-                        <br />
-                        <ul>
-                            <li></li>
-                            <li>two</li>
-                            <li>three</li>
-                            <li>four</li>
-                        </ul></div>
-                </div>
-                <div className=" profileBox2">
-                    <div className="detailBox2">
-                        <div className="infoTab "><h2>{user.username}</h2><p>profession</p></div>
-                        <div className="infoTab"><h3>{user.address}</h3></div>
-                        <div>
-
+            <div className=" flex flex-row basis-full">
+                <div className="flex basis-full profileBox">
+                    <div className=" profileBox1 ">
+                        <div className=" detailBox basis-1/3 pl-6 rounded border-slate-400 border-solid border-2">This is for profile picture</div>
+                        <div className="detailBox ">
+                            <h2><span>Details</span></h2>
+                            <p>{loading ? "loading" : user.about}</p>
                         </div>
+                        <div className="detailBox"><h2>
+                            <span>Skills</span></h2>
+                            <br />
+                            <ul>
+                                <li></li>
+                                <li>two</li>
+                                <li>three</li>
+                                <li>four</li>
+                            </ul></div>
                     </div>
-                    <div className="contactBox">
-                        <h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
-                            href={`/profile/${data}`}>{data}
-                        </Link>}
-                        </h2>
-                        <h3>Contact Information</h3>
-                        <ul>
-                            <li><span >Phone:</span>{user.phoneNumber}
-                            </li><li><span>Address:</span>{user.address}</li>
-                            <li><span>E-mail:</span>{user.email}</li>
-                            <li><span>Site:</span>{user.website}</li>
-                            <h3>basic Information</h3>
-                            <li><span></span></li><li><span></span></li>
-                        </ul>
+                    <div className=" profileBox2">
+                        <div className="detailBox2">
+                            <div className="infoTab "><h2>{user.username}</h2><p>profession</p></div>
+                            <div className="infoTab"><h3>{user.address}</h3></div>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div className="contactBox">
+                            <h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
+                                href={`/profile/${data}`}>{data}
+                            </Link>}
+                            </h2>
+                            <h3>Contact Information</h3>
+                            <ul>
+                                <li><span >Phone:</span>{user.phoneNumber}
+                                </li><li><span>Address:</span>{user.address}</li>
+                                <li><span>E-mail:</span>{user.email}</li>
+                                <li><span>Site:</span>{user.website}</li>
+                                <h3>basic Information</h3>
+                                <li><span></span></li><li><span></span></li>
+                            </ul>
+                        </div>
+                        <hr />
                     </div>
-                    <hr />
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 import { connect } from "@/dbConfig/dbConfig"
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import bcryptjs from "bcryptjs"
 import { getDataFromToken } from "@/helpers/getDataFromToken";
+
+
 connect()
 
 export async function POST(request: NextRequest) {
@@ -12,8 +12,9 @@ export async function POST(request: NextRequest) {
     console.log(reqBody);
 
     const userId = await getDataFromToken(request);
-    const { website, phoneNumber, address, birthday, about, profession } = reqBody
+    const { website, phoneNumber, address, birthday, about, profession, skills } = reqBody
     // const { token, , email } = reqBody
+    reqBody.skills.split();
     console.log(reqBody);
     console.log(userId);
 
@@ -24,13 +25,14 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Email is not correct" }, { status: 400 });
     }
-    // updatetes user info not letting logic erase data
+    // updates user info not letting logic erase data
     if (website !== "") { user.website = website }
     if (phoneNumber !== "") { user.phoneNumber = phoneNumber }
     if (address !== "") { user.address = address }
     if (birthday !== "") { user.birthday = birthday }
     if (about !== "") { user.about = about }
     if (profession !== "") { user.profession = profession }
+    if (skills !== "") { user.skills = skills }
 
     //saves the user's info
     await user.save()
