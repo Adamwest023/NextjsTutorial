@@ -17,6 +17,7 @@ export default function AddUserInfo() {
                 address: "",
                 birthday: "",
                 about: "",
+                profession:"",
         });
 
         //updating the user's new information
@@ -74,6 +75,22 @@ export default function AddUserInfo() {
                                                                                 value={user.phoneNumber}
                                                                                 onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
                                                                                 placeholder="Phone Number"
+                                                                        />
+
+                                                                </div>
+
+                                                        </div>
+                                                </div>
+                                                <div className=" flex flex-col">
+                                                        <label htmlFor="Job Title">Job Title</label>
+                                                        <div>
+                                                                <div>
+                                                                        <input className="input"
+                                                                                id="phoneNumber"
+                                                                                type="text"
+                                                                                value={user.profession}
+                                                                                onChange={(e) => setUser({ ...user, profession: e.target.value })}
+                                                                                placeholder="Job Title"
                                                                         />
 
                                                                 </div>

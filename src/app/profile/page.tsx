@@ -4,14 +4,22 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import { set } from "mongoose";
 
 
 export default function ProfilePage() {
     const router = useRouter();
     const [data, setData] = useState("loading");
     const [email, setEmail] = useState("loading");
-    const [loading, setLoading] = React.useState(false);
-    const [user, setUser] = React.useState("nothing");
+    const [loading, setLoading] = React.useState(true);
+    const [user, setUser] = React.useState({
+        username: "",
+        about: "",
+        website: "",
+        phoneNumber: "",
+        address: "",
+        email: "",
+    });
     const [updateUser, setUpdateUser] = React.useState({
         _id: "",
         email: "",
@@ -52,7 +60,7 @@ export default function ProfilePage() {
             router.push("/updateuserinfo");
             <Link href={{
                 pathname: "/updateuserinfo",
-                query:response.data.email
+                query: response.data.email
             }}></Link>
         } catch (error: any) {
             console.log("error", error.message);
@@ -63,11 +71,12 @@ export default function ProfilePage() {
     }
 
 
-
-    //calls user data function on page load 
     useEffect(() => {
-        window.addEventListener("load", getUserDetails());
-    }, []);
+        if (loading) {
+            getUserDetails();
+            setLoading(false);
+        }
+    })
 
     return (
         <div className=" flexDis flex-wrap"  >
@@ -86,7 +95,7 @@ export default function ProfilePage() {
                     <div className="basis-1/3 pl-6 rounded border-slate-400 border-solid border-2">This is for profile picture</div>
                     <div className="detailBox ">
                         <h2><span>Details</span></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, nam nobis placeat nihil omnis nesciunt mollitia. Quo enim quibusdam nemo delectus necessitatibus pariatur aliquam distinctio autem, veritatis quam? Vero, natus.</p>
+                        <p>{loading ? "loading" : user.about}</p>
                     </div>
                     <div className="detailBox"><h2>
                         <span>Skills</span></h2>
@@ -101,7 +110,7 @@ export default function ProfilePage() {
                 <div className=" profileBox2">
                     <div className="detailBox2">
                         <div className="infoTab "><h2>{user.username}</h2><p>profession</p></div>
-                        <div className="infoTab"><h3>area</h3></div>
+                        <div className="infoTab"><h3>{user.address}</h3></div>
                         <div>
 
                         </div>
@@ -113,7 +122,10 @@ export default function ProfilePage() {
                         </h2>
                         <h3>Contact Information</h3>
                         <ul>
-                            <li><span >Phone:</span></li><li><span>Address:</span></li><li><span>E-mail:</span></li><li><span>Site:</span>{user.website}</li>
+                            <li><span >Phone:</span>{user.phoneNumber}
+                            </li><li><span>Address:</span>{user.address}</li>
+                            <li><span>E-mail:</span>{user.email}</li>
+                            <li><span>Site:</span>{user.website}</li>
                             <h3>basic Information</h3>
                             <li><span></span></li><li><span></span></li>
                         </ul>
