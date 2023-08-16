@@ -4,7 +4,6 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import { get } from "http";
 
 
 export default function ProfilePage() {
@@ -18,7 +17,7 @@ export default function ProfilePage() {
         email: "",
     });
 
-    //logut function
+    //logout function
     const logout = async () => {
         try {
             await axios.get('/api/users/logout');
@@ -37,13 +36,13 @@ export default function ProfilePage() {
         setData(res.data.data._id);
         setEmail(res.data.data.email);
         setUser(res.data.data);
-        return res.data 
+        return res.data
     };
 
     //sends user to update information
     const onUserInfo = async () => {
         updateUser._id = data
-        updateUser.email =email 
+        updateUser.email = email
         console.log(data);
         console.log(email);
         try {
@@ -51,6 +50,10 @@ export default function ProfilePage() {
             const response = await axios.post("/api/users/userinfo", updateUser);
             console.log("success", response.data);
             router.push("/updateuserinfo");
+            <Link href={{
+                pathname: "/updateuserinfo",
+                query:response.data.email
+            }}></Link>
         } catch (error: any) {
             console.log("error", error.message);
             console.log(data);
@@ -103,10 +106,11 @@ export default function ProfilePage() {
 
                         </div>
                     </div>
-                    <div className="contactBox"><h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
-                        href={`/profile/${data}`}>{data}
-                    </Link>}
-                    </h2>
+                    <div className="contactBox">
+                        <h2 className="p-3 rounded bg-green-500">{data === "Loading" ? "About" : <Link
+                            href={`/profile/${data}`}>{data}
+                        </Link>}
+                        </h2>
                         <h3>Contact Information</h3>
                         <ul>
                             <li><span >Phone:</span></li><li><span>Address:</span></li><li><span>E-mail:</span></li><li><span>Site</span></li>

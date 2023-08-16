@@ -16,10 +16,10 @@ export async function POST(request: NextRequest) {
         }
         const response = NextResponse.json({
             message: "Success",
-            success: true,
+            success: true, 
+            user
         });
-
-        return response
+        return response;
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 })

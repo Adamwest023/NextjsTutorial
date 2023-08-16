@@ -281,7 +281,6 @@ span:before {
 
 /* update user page */
 .userInfoDiv {
-  justify-content: center;
   padding: 5rem 0 5rem 0;
   background-image: linear-gradient(50deg, #2e2d4d 30%, #cB48b7 30%, #E4E3D3 46%, #6D9F71 10%);
   flex-direction: column !important;
@@ -293,8 +292,8 @@ span:before {
   margin-left: 3rem;
   width: 83.333333%;
   height: 85vh;
-  background-color: rgb(228, 227, 211);
-  justify-content: center;
+  background-color: rgba(228, 227, 211,0.95);
+  justify-content: space-evenly;
   border-radius: 5px;
   padding: 1.5rem 5rem;
 }
