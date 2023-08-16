@@ -113,7 +113,7 @@ export default function ProfilePage() {
                         </h2>
                         <h3>Contact Information</h3>
                         <ul>
-                            <li><span >Phone:</span></li><li><span>Address:</span></li><li><span>E-mail:</span></li><li><span>Site</span></li>
+                            <li><span >Phone:</span></li><li><span>Address:</span></li><li><span>E-mail:</span></li><li><span>Site:</span>{user.website}</li>
                             <h3>basic Information</h3>
                             <li><span></span></li><li><span></span></li>
                         </ul>

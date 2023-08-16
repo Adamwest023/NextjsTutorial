@@ -4,14 +4,12 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast"
-import { NextRequest } from "next/server";
-import { getDataFromToken } from "@/helpers/getDataFromToken";
+
 
 export default function addUserInfo() {
         const router = useRouter();
         const [error, setError] = useState(false);
         const [loading, setLoading] = React.useState(false);
-        const [myToken, setMyToken] = useState("");
 
         const [user, setUser] = React.useState({
                 website: "",
@@ -36,6 +34,7 @@ export default function addUserInfo() {
                 } finally {
                         setLoading(false);
                         console.log(user);
+                        router.push("/profile");
                 }
         }
 
@@ -137,6 +136,11 @@ export default function addUserInfo() {
                                         >
                                                 Submit
                                         </button>
+                                        <Link className="button"
+                                                href="/profile"
+                                        >
+                                                back to profile
+                                        </Link>
                                 </div>
                         </form>
                 </div>
